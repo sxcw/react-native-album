@@ -4,19 +4,29 @@ import Card from './Card';
 import CardSection from './CardSection';
 
 const AlbumDetail = ({ album }) => {
-  const { title, artist, thumbnail_image } = album;
-  const { thumbnailStyles, headerContentStyles } = styles;
+  const { title, artist, thumbnail_image, image } = album;
+  const {
+    thumbnailStyles,
+    headerContentStyles,
+    thumbnailContainerStyles,
+    headerTextStyles,
+    imageStyles
+  } = styles;
 
   return (
     <Card>
       <CardSection>
-        <View>
+        <View style={thumbnailContainerStyles}>
           <Image style={thumbnailStyles} source={{ uri: thumbnail_image }} />
         </View>
         <View style={headerContentStyles}>
-          <Text>{title}</Text>
+          <Text style={headerTextStyles}>{title}</Text>
           <Text>{artist}</Text>
         </View>
+      </CardSection>
+
+      <CardSection>
+        <Image style={imageStyles} source={{ uri: image }} />
       </CardSection>
     </Card>
   );
@@ -38,9 +48,26 @@ const styles = {
     marginTop: 10
   }, 
 
+  headerTextStyles: {
+    fontSize: 18
+  },
+
   thumbnailStyles: {
     height: 50,
     width: 50
+  },
+
+  thumbnailContainerStyles: {
+    justifyContent: 'center',
+    alignItems: 'center',
+    marginLeft: 10,
+    marginRight: 10
+  },
+
+  imageStyles: {
+    height: 300,
+    flex: 1,
+    width: null
   }
 };
 
